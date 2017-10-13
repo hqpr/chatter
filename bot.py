@@ -11,15 +11,24 @@ bot = ChatBot(
     storage_adapter="chatterbot.storage.SQLStorageAdapter",
     input_adapter='adapters.RabbitMQInputAdapter',
     output_adapter='adapters.RabbitMQOutputAdapter',
-    database="database.db"
+    database="database.db",
+    trainer='chatterbot.trainers.ListTrainer',
 )
 
-bot.set_trainer(ChatterBotCorpusTrainer)
-
-bot.train(
-    "chatterbot.corpus.english.greetings",
-    "chatterbot.corpus.english.humor",
-)
+bot.train([
+    "Hi",
+    "Hi, can I help you?",
+    "Hello",
+    "Hi, how can I help you?",
+    "file a complain",
+    "Against who?",
+    "x",
+    "Response based on 'X'. ",
+    "y",
+    "Response based on 'Y'. ",
+    "z"
+    "Z response"
+])
 
 print("Type something to begin...")
 
