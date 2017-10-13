@@ -9,7 +9,7 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 bot = ChatBot(
     "Terminal",
     storage_adapter="chatterbot.storage.SQLStorageAdapter",
-    input_adapter='adapters.RabbitMQInputAdapter',
+    input_adapter='adapters.TestingInputAdapter',
     output_adapter='adapters.RabbitMQOutputAdapter',
     database="database.db"
 )
@@ -21,11 +21,11 @@ bot.train(
     "chatterbot.corpus.english.humor",
 )
 
-print("Type something to begin...")
+# print("Type something to begin...")
 
 while True:
     try:
         bot_input = bot.get_response(None)
     # Press ctrl-c or ctrl-d on the keyboard to exit
     except (KeyboardInterrupt, EOFError, SystemExit):
-        break
+        exit()
