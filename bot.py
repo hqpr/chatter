@@ -2,6 +2,7 @@ import logging
 
 from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
+from chatterbot.trainers import ListTrainer
 
 # input_adapter='chatterbot.input.TerminalAdapter',
 # input_adapter='adapters.RabbitMQInputAdapter',
@@ -11,15 +12,26 @@ bot = ChatBot(
     storage_adapter="chatterbot.storage.SQLStorageAdapter",
     input_adapter='adapters.TestingInputAdapter',
     output_adapter='adapters.RabbitMQOutputAdapter',
-    database="database.db"
+    database="database.db",
+    trainer='chatterbot.trainers.ListTrainer',
+    logic_adapters=["chatterbot.logic.BestMatch", ]
 )
 
-bot.set_trainer(ChatterBotCorpusTrainer)
+bot.train([
+    "Hi",
+    "Hi, can I help you?",
+    "Hello",
+    "Hi, how can I help you?",
+    "file a complain",
+    "Against who?",
+    "x",
+    "Response based on 'X'. ",
+    "y",
+    "Response based on 'Y'. ",
+    "z"
+    "Z response"
+])
 
-bot.train(
-    "chatterbot.corpus.english.greetings",
-    "chatterbot.corpus.english.humor",
-)
 
 # print("Type something to begin...")
 
