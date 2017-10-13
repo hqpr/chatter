@@ -10,6 +10,7 @@ logging.basicConfig(level=logging.INFO)
 
 def callback(ch, method, properties, body):
     print(" [OUTPUT] Received %r" % body)
+    logging.debug("[OUTPUT] Received %r" % body)
 
 
 channel.basic_consume(callback,
