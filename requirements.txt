@@ -17,3 +17,6 @@ ruamel.yaml==0.15.0
 six==1.11.0
 SQLAlchemy==1.1.14
 urllib3==1.22
+rasa_nlu==0.10.1
+spacy==1.9.0
+typing==3.6.2

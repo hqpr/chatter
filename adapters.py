@@ -20,7 +20,7 @@ class RabbitMQOutputAdapter(OutputAdapter):
         connection.close()
         print('[ANSWER] {}'.format(statement.text))
         # self.create_json(statement)
-        return statement.text
+        return Statement(statement.text).add_extra_data('button_id', 1)
 
     def create_json(self, response):
         import json
@@ -46,3 +46,7 @@ class RabbitMQInputAdapter(InputAdapter):
         connection.close()
         print('[QUESTION] {}'.format(user_input))
         return Statement(user_input)
+
+    def process_input_statement(self, *args, **kwargs):
+        input_statement = self.process_input(*args, **kwargs)
+        return input_statement
